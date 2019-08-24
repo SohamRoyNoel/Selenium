@@ -1,0 +1,32 @@
+package newpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Upload_Download {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+	    String baseUrl = "http://demo.guru99.com/test/upload/";
+	    String expectedTitle = "Welcome: Mercury Tours";
+	    String actualTitle = "";
+	    
+	    driver.get(baseUrl);
+	    actualTitle = driver.getTitle();
+	    
+	    // find the upload field
+	    WebElement uploader = driver.findElement(By.xpath("//*[@id=\"uploadfile_0\"]"));
+
+	    // Send the Value
+	    uploader.sendKeys("C:\\My Details\\laravel.pdf"); // If the file is missing, it throws error
+	    
+	    // Upload
+	    driver.findElement(By.xpath("//*[@id=\"submitbutton\"]")).click();
+	}
+
+}

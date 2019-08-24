@@ -1,0 +1,48 @@
+package newpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DropdownTesting extends Thread {
+
+	public static void main(String[] args) throws Exception {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+	    String baseUrl = "http://demo.guru99.com/test/newtours/register.php";
+	    String expectedTitle = "Welcome: Mercury Tours";
+	    String actualTitle = "";
+	    
+	    driver.get(baseUrl);
+	    actualTitle = driver.getTitle();
+	    
+	    Select dropdown = new Select(driver.findElement(By.name("country")));
+	    
+	    dropdown.selectByVisibleText("ANGOLA");
+	    Thread.sleep(3000);
+	    dropdown.selectByIndex(2);
+	    Thread.sleep(3000);
+	    dropdown.selectByValue("AMERICAN SAMOA");
+	    Thread.sleep(3000);
+	    //dropdown.deselectAll(); : You may only deselect all options of a multi-select
+	    //Thread.sleep(3000);
+	    //dropdown.selectByIndex(5);
+	    //Thread.sleep(3000);
+	    //dropdown.deselectByIndex(5);
+	    //Thread.sleep(3000);
+	    //dropdown.selectByValue("AMERICAN SAMOA");
+	    //Thread.sleep(3000);
+	    //dropdown.deselectByValue("AMERICAN SAMOA");
+	    
+	    if(dropdown.isMultiple()) {
+	    	System.out.println("True");
+	    } else {
+	    	System.out.println("False");
+	    }
+
+	}
+
+}

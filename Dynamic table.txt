@@ -1,0 +1,57 @@
+package newpackage;
+
+import java.util.Iterator;
+import java.util.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Table_Dynamic {
+
+	public static void main(String[] args) {
+	
+		//*[@id="leftcontainer"]/table/tbody/tr[1]/td[1]/a
+		//*[@id="leftcontainer"]/table/tbody/tr[2]/td[1]/a
+		//*[@id="leftcontainer"]/table/tbody/tr[1]/td[1]
+		//*[@id="leftcontainer"]/table/tbody/tr[2]/td[1]/a
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://demo.guru99.com/test/web-table-element.php");
+		driver.manage().window().maximize();
+		
+		// no of columns
+		List  col = driver.findElements(By.xpath("//*[@id=\"leftcontainer\"]/table/thead/tr/th"));
+        System.out.println("No of cols are : " +col.size());
+        
+        // No of rows  
+        List rows = driver.findElements(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr"));
+        System.out.println("No of Rows : " + rows.size());
+        
+        // column rows 
+        for (int i = 1; i <= col.size(); i++) {
+        	String colname = driver.findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/thead/tr/th[" + i + "]")).getText();
+			System.out.println(colname);
+		}
+         
+        // Row details
+        for (int i = 1; i <= rows.size(); i++) {
+			for (int j = 1; j <= col.size(); j++) {
+				String rowname = driver.findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr["+ i +"]/td["+ j +"]")).getText();
+				System.out.print(rowname + " || ");
+			}
+			System.out.println();
+		}
+       
+        // MAX and MIN
+        for (int i = 1; i <= rows.size(); i++) {
+			
+				int rowname = max(Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"leftcontainer\"]/table/tbody/tr["+ i +"]/td[5]")).getText()));
+				System.out.print(x);
+			
+			System.out.println();
+		}
+	}
+
+}

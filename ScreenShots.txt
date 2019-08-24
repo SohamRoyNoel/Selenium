@@ -1,0 +1,50 @@
+package newpackage;
+
+import java.io.File;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.apache.commons.io.FileUtils;
+
+
+import net.bytebuddy.asm.Advice.This;
+
+
+
+public class Screenshots {
+
+	public static void main(String[] args) {
+	
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+	    String baseUrl = "http://demo.guru99.com/test/upload/";
+	    String expectedTitle = "Welcome: Mercury Tours";
+	    String actualTitle = "";
+	    
+	    driver.get(baseUrl);
+	    actualTitle = driver.getTitle();
+	    
+	    try {
+			screenshot(driver, "D://Ramchagol.png");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	// Download BINARIES from : https://commons.apache.org/proper/commons-io/download_io.cgi
+	private static void screenshot(WebDriver webDriver, String filepath) throws Exception {
+		
+		TakesScreenshot screenshots = ((TakesScreenshot)webDriver);
+		File pic = screenshots.getScreenshotAs(OutputType.FILE);
+		File desFile = new File(filepath);
+		FileUtils.copyFile(pic, desFile);
+
+	}
+
+}

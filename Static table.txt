@@ -1,0 +1,30 @@
+package newpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Table_Static {
+
+	public static void main(String[] args) {
+
+		/*
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://demo.guru99.com/test/write-xpath-table.html");
+		driver.manage().window().maximize();
+		
+		String tableText = driver.findElement(By.xpath("/html/body/center/table/tbody/tr[2]/td[2]")).getText();
+		System.out.println(tableText);
+		*/
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://demo.guru99.com/test/newtours/");
+		driver.manage().window().maximize();
+		
+		String tableText = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]")).getText();
+		System.out.println(tableText);
+	}
+
+}

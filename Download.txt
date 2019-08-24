@@ -1,0 +1,52 @@
+package newpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Upload_Download_2 {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+	    String baseUrl = "http://demo.guru99.com/test/yahoo.html";
+	    String expectedTitle = "Welcome: Mercury Tours";
+	    String actualTitle = "";
+	    
+	    driver.get(baseUrl);
+	    actualTitle = driver.getTitle();
+	    
+	    /* Download needs a file wget.exe, that can be found here : https://eternallybored.org/misc/wget/ 
+	     * Next open Command prompt
+	     * redirect to root : cd /
+	     * then type :
+	     * cmd /c C:\\Users\\soham\\Downloads\\wget.exe -P D: --no-check-certificate http://demo.guru99.com/selenium/msgr11us.exe
+	     *        |         Location of the app        |     |-> Where to install 
+	     *        
+	     *        Success Message:
+	     *        2019-08-15 13:28:40 (345 KB/s) - 'D:/msgr11us.exe' saved [439704/439704]
+	     * */
+
+	    /*  <a id="messenger-download" href="http://demo.guru99.com/test/msgr11us.exe" download>Download Now</a> */
+	    
+	    WebElement downloader = driver.findElement(By.xpath("//*[@id=\"messenger-download\"]"));
+	    String source = downloader.getAttribute("href"); 
+	    
+	    String wget_command = "cmd /c wget -P E: --no-check-certificate " + source;
+	    /*                                  |-> Location to download the shit               */
+	    
+	    try {
+	    	Process e = Runtime.getRuntime().exec(wget_command);
+	    	int exitval = e.waitFor();
+	    	System.out.println("Exit val : " + exitval);
+	    } catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			driver.close();
+		}
+	}
+
+}

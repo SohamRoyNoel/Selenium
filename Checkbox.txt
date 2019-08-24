@@ -1,0 +1,35 @@
+package newpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CheckBoxTesting {
+
+	public static void main(String[] args) throws Exception {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Selenium\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+	    String baseUrl = "http://demo.guru99.com/test/radio.html";
+	    String expectedTitle = "Welcome: Mercury Tours";
+	    String actualTitle = "";
+	    
+	    driver.get(baseUrl);
+	    actualTitle = driver.getTitle();
+	    
+	    // Find the fields by name
+	    WebElement check = driver.findElement(By.xpath("//*[@id=\"vfb-6-0\"]"));
+	    WebElement check1 = driver.findElement(By.id("vfb-6-1"));
+	    WebElement check2 = driver.findElement(By.xpath("//*[@id=\"vfb-6-2\"]"));
+	    
+	    // Clicking the button
+	    check.click();
+	    check1.click();
+	    check2.click();
+	    System.out.println("Form Submitted");
+
+	}
+
+}
